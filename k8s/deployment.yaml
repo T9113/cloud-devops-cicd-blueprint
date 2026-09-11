@@ -5,7 +5,7 @@ metadata:
   namespace: default
   labels:
     app.kubernetes.io/name: cloud-blueprint-app
-    app.kubernetes.io/part-of: onesdev-cloud-platform
+    app.kubernetes.io/part-of: cloud-delivery-platform
     app.kubernetes.io/managed-by: github-actions
 spec:
   replicas: 3

@@ -12,7 +12,7 @@
 
 ## 📖 Overview
 
-This repository demonstrates a **battle-tested, production-grade cloud delivery architecture** engineered by **Tayyab Masood (Founder & Lead Developer @ OnesDev)**.
+This repository demonstrates a **battle-tested, production-grade cloud delivery architecture** engineered by **Tayyab Masood (Cloud Solutions Architect & DevOps Lead)**.
 
 It provides a repeatable reference blueprint implementing:
 - **Infrastructure as Code (IaC):** Modular Terraform configurations managing multi-AZ AWS networking (VPC, public/private subnets, NAT gateways, security groups).
@@ -133,8 +133,8 @@ kubectl rollout status deployment/cloud-blueprint-app
 ## 👨‍💻 Author & Architecture Inquiries
 
 **Tayyab Masood**  
-- **Role:** Cloud Solutions Architect | Lead DevOps Engineer | Founder at [OnesDev](https://onesdev.com)  
-- **Certifications:** AWS Certified Solutions Architect (SAA), Certified Kubernetes Administrator (CKA), Google IT Support Professional  
+- **Role:** Cloud Solutions Architect & Senior DevOps Engineer  
+- **Certifications:** AWS Certified Solutions Architect (SAA), Google IT Support Professional  
 - **GitHub:** [@T9113](https://github.com/T9113)  
 - **LinkedIn:** [linkedin.com/in/tayyabmasood911](https://www.linkedin.com/in/tayyabmasood911)  
 - **Email:** [tayyabmasood911@gmail.com](mailto:tayyabmasood911@gmail.com)  

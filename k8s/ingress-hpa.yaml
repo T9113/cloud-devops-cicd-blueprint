@@ -28,10 +28,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - api.onesdev.com
-      secretName: onesdev-api-tls
+        - api.cloudblueprint.dev
+      secretName: cloudblueprint-api-tls
   rules:
-    - host: api.onesdev.com
+    - host: api.cloudblueprint.dev
       http:
         paths:
           - path: /

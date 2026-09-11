@@ -9,10 +9,10 @@ terraform {
 
   # Production Best Practice: Remote State Backend
   # backend "s3" {
-  #   bucket         = "onesdev-terraform-state-prod"
+  #   bucket         = "cloud-blueprint-tf-state-prod"
   #   key            = "cloud-blueprint/terraform.tfstate"
   #   region         = "us-east-1"
-  #   dynamodb_table = "onesdev-tf-locks"
+  #   dynamodb_table = "cloud-blueprint-tf-locks"
   #   encrypt        = true
   # }
 }
@@ -24,7 +24,6 @@ provider "aws" {
     tags = {
       Project     = "CloudDevOpsBlueprint"
       Owner       = "Tayyab Masood"
-      Agency      = "OnesDev"
       Environment = var.environment
       ManagedBy   = "Terraform"
     }
@@ -40,7 +39,7 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
 
   tags = {
-    Name = "onesdev-${var.environment}-vpc"
+    Name = "blueprint-${var.environment}-vpc"
   }
 }
 
@@ -48,7 +47,7 @@ resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "onesdev-${var.environment}-igw"
+    Name = "blueprint-${var.environment}-igw"
   }
 }
 
@@ -60,7 +59,7 @@ resource "aws_subnet" "public_1" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name                     = "onesdev-${var.environment}-public-1"
+    Name                     = "blueprint-${var.environment}-public-1"
     "kubernetes.io/role/elb" = "1"
   }
 }
@@ -72,7 +71,7 @@ resource "aws_subnet" "public_2" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name                     = "onesdev-${var.environment}-public-2"
+    Name                     = "blueprint-${var.environment}-public-2"
     "kubernetes.io/role/elb" = "1"
   }
 }
@@ -84,7 +83,7 @@ resource "aws_subnet" "private_1" {
   availability_zone = "${var.aws_region}a"
 
   tags = {
-    Name                              = "onesdev-${var.environment}-private-1"
+    Name                              = "blueprint-${var.environment}-private-1"
     "kubernetes.io/role/internal-elb" = "1"
   }
 }
@@ -95,7 +94,7 @@ resource "aws_subnet" "private_2" {
   availability_zone = "${var.aws_region}b"
 
   tags = {
-    Name                              = "onesdev-${var.environment}-private-2"
+    Name                              = "blueprint-${var.environment}-private-2"
     "kubernetes.io/role/internal-elb" = "1"
   }
 }
@@ -106,7 +105,7 @@ resource "aws_subnet" "private_2" {
 resource "aws_eip" "nat" {
   domain = "vpc"
   tags = {
-    Name = "onesdev-${var.environment}-nat-eip"
+    Name = "blueprint-${var.environment}-nat-eip"
   }
 }
 
@@ -115,7 +114,7 @@ resource "aws_nat_gateway" "nat" {
   subnet_id     = aws_subnet.public_1.id
 
   tags = {
-    Name = "onesdev-${var.environment}-nat-gw"
+    Name = "blueprint-${var.environment}-nat-gw"
   }
   depends_on = [aws_internet_gateway.gw]
 }
@@ -129,7 +128,7 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name = "onesdev-${var.environment}-public-rt"
+    Name = "blueprint-${var.environment}-public-rt"
   }
 }
 
@@ -142,7 +141,7 @@ resource "aws_route_table" "private" {
   }
 
   tags = {
-    Name = "onesdev-${var.environment}-private-rt"
+    Name = "blueprint-${var.environment}-private-rt"
   }
 }
 
@@ -170,7 +169,7 @@ resource "aws_route_table_association" "private_2" {
 # 3. Security Group with Least-Privilege Rules
 # ==========================================
 resource "aws_security_group" "app_sg" {
-  name        = "onesdev-${var.environment}-app-sg"
+  name        = "blueprint-${var.environment}-app-sg"
   description = "Security group for containerized workload"
   vpc_id      = aws_vpc.main.id
 
@@ -199,6 +198,6 @@ resource "aws_security_group" "app_sg" {
   }
 
   tags = {
-    Name = "onesdev-${var.environment}-app-sg"
+    Name = "blueprint-${var.environment}-app-sg"
   }
 }

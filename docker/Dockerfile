@@ -47,4 +47,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD wget --no-verbose --tries=1 --spider http://localhost:8080/health || exit 0
 
 # Start command
-CMD ["node", "-e", "const http = require('http'); const server = http.createServer((req, res) => { if(req.url === '/health') { res.writeHead(200, {'Content-Type': 'application/json'}); res.end(JSON.stringify({status: 'UP', timestamp: new Date().toISOString()})); } else { res.writeHead(200, {'Content-Type': 'text/plain'}); res.end('Cloud & DevOps Blueprint API - Powered by OnesDev'); } }); server.listen(8080, () => console.log('Microservice running on port 8080'));"]
+CMD ["node", "-e", "const http = require('http'); const server = http.createServer((req, res) => { if(req.url === '/health') { res.writeHead(200, {'Content-Type': 'application/json'}); res.end(JSON.stringify({status: 'UP', timestamp: new Date().toISOString()})); } else { res.writeHead(200, {'Content-Type': 'text/plain'}); res.end('Cloud & DevOps Blueprint API - Production Ready Microservice'); } }); server.listen(8080, () => console.log('Microservice running on port 8080'));"]
